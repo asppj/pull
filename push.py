@@ -8,7 +8,12 @@ from typing import List, Tuple
 
 from tqdm import tqdm
 
-MIRROR_REGISTER = "hub-mirror.c.163.com"
+# MIRROR_REGISTER = "hub-mirror.c.163.com"
+MIRROR_MAP={
+    "gcr.io":" gcr.mirrors.ustc.edu.cn",
+    "k8s.gcr.io":" gcr.mirrors.ustc.edu.cn/google-containers",
+    "quay.io":" quay.mirrors.ustc.edu.cn",
+}
 HUB_NAME = "mirrorgooglecontainers"
 DOCKER_PULL = "docker pull %s"
 DOCKER_TAG = "docker tag %s %s"
@@ -47,9 +52,13 @@ def map_image(image_name: str) -> Tuple[str, str]:
     names = image_name.split("/")
     if len(names) < 2:
         raise Exception("gcr.io/pause:3.1这种完整格式才行")
-    lay = "%s/%s/%s"
-    return image_name, lay % (MIRROR_REGISTER, HUB_NAME, names[-1])
+    # lay = "%s/%s/%s"
+    # return image_name, lay % (MIRROR_REGISTER, HUB_NAME, names[-1])
+    for k,v in MIRROR_MAP.items():
+        if names[0].startswith(k):
+            names[0].replace(k,v)
 
+    return image_name,"/".join(names)
 
 def pull_image(image_path: str):
     """拉取image"""
