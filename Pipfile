@@ -1,0 +1,13 @@
+[[source]]
+name = "pypi"
+url = "http://mirrors.aliyun.com/pypi/simple"
+verify_ssl = true
+
+[dev-packages]
+yapf = "*"
+
+[packages]
+tqdm = "*"
+
+[requires]
+python_version = "3.7"
