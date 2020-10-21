@@ -16,12 +16,12 @@ MIRROR_MAP={
     "quay.io":"quay.mirrors.ustc.edu.cn",
 }
 HUB_NAME = "mirrorgooglecontainers"
-DOCKER_PULL = "docker pull %s"
-DOCKER_TAG = "docker tag %s %s"
-DOCKER_SAVE = "docker save %s %s"
-DOCKER_LOAD = "docker load %s"
-DOCKER_IMAGES = "docker images |grep %s"
-DOCKER_CLAER = "docker rmi %s"
+DOCKER_PULL = "microk8s.docker pull %s"
+DOCKER_TAG = "microk8s.docker tag %s %s"
+DOCKER_SAVE = "microk8s.docker save %s %s"
+DOCKER_LOAD = "microk8s.docker load %s"
+DOCKER_IMAGES = "microk8s.docker images |grep %s"
+DOCKER_CLAER = "microk8s.docker rmi %s"
 
 
 def exec_shell(cmd: List[str]) -> str:
