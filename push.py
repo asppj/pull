@@ -10,9 +10,10 @@ from tqdm import tqdm
 
 # MIRROR_REGISTER = "hub-mirror.c.163.com"
 MIRROR_MAP={
-    "gcr.io":" gcr.mirrors.ustc.edu.cn",
-    "k8s.gcr.io":" gcr.mirrors.ustc.edu.cn/google-containers",
-    "quay.io":" quay.mirrors.ustc.edu.cn",
+    "gcr.io":"gcr.mirrors.ustc.edu.cn",
+    # "k8s.gcr.io":"gcr.mirrors.ustc.edu.cn/google-containers",
+    "k8s.gcr.io":"registry.cn-hangzhou.aliyuncs.com/google_containers",
+    "quay.io":"quay.mirrors.ustc.edu.cn",
 }
 HUB_NAME = "mirrorgooglecontainers"
 DOCKER_PULL = "docker pull %s"
@@ -56,7 +57,7 @@ def map_image(image_name: str) -> Tuple[str, str]:
     # return image_name, lay % (MIRROR_REGISTER, HUB_NAME, names[-1])
     for k,v in MIRROR_MAP.items():
         if names[0].startswith(k):
-            names[0].replace(k,v)
+            names[0]=names[0].replace(k,v)
 
     return image_name,"/".join(names)
 
